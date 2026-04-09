@@ -42,7 +42,7 @@ if query:
     cos_scores = util.cos_sim(query_vec, faculty_embeddings)[0]
     
     # Rank results
-    top_results = torch.topk(cos_scores, k=3)
+    top_results = torch.topk(cos_scores, k=20)
     scores = top_results.values.tolist()
     indices = top_results.indices.tolist()
     
