@@ -1,137 +1,242 @@
 /* style.css */
+
+/* ============================================================
+   DESIGN SYSTEM — Dark Gradient + Glassmorphism
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
 :root {
-    --bg-dark: hsl(194, 57%, 45%); 
-    --bg: hsl(194, 50%, 85%);     /* Main Teal Background */
-    --bg-light: hsl(194 40% 80%);     /* Cream Search Bar & Heading text */
-    --bg-faculty: hsl(194 25% 90%);
-    --text: hsl(194 50% 30);    /* Dark Slate for readability */
-    --text-muted: hsl(194, 30%, 60%);       /* Highlight Teal */
-    --text-light: hsl(194 25% 90%);
-    --sub-text: hsl(190, 7%, 83%);
+    /* Background gradient stops */
+    --grad-1: hsl(260, 60%, 12%);   /* deep violet-black */
+    --grad-2: hsl(230, 55%, 18%);   /* dark indigo */
+    --grad-3: hsl(200, 60%, 15%);   /* dark teal-blue */
+
+    /* Accent blobs */
+    --blob-a: hsla(270, 80%, 60%, 0.35);   /* purple */
+    --blob-b: hsla(195, 90%, 55%, 0.25);   /* cyan */
+
+    /* Glass surface */
+    --glass-bg: hsla(240, 40%, 100%, 0.06);
+    --glass-border: hsla(255, 100%, 100%, 0.12);
+    --glass-shadow: 0 8px 32px hsla(230, 60%, 5%, 0.5);
+    --glass-highlight: hsla(255, 100%, 100%, 0.08);
+
+    /* Search bar glass */
+    --input-bg: hsla(240, 60%, 100%, 0.08);
+    --input-border: hsla(255, 100%, 100%, 0.18);
+
+    /* Text */
+    --text-primary: hsl(220, 30%, 95%);
+    --text-secondary: hsl(220, 20%, 70%);
+    --text-muted: hsl(220, 15%, 50%);
+    --accent: hsl(195, 90%, 65%);
+    --accent-purple: hsl(265, 80%, 72%);
 }
 
-/* App Background */
+/* ============================================================
+   GLOBAL APP BACKGROUND  — gradient mesh with soft blobs
+   ============================================================ */
 .stApp {
-    background-color: var(--bg-light);
+    background:
+        /* decorative blobs via radial gradients */
+        radial-gradient(ellipse 55% 45% at 15% 20%, var(--blob-a), transparent),
+        radial-gradient(ellipse 50% 40% at 85% 75%, var(--blob-b), transparent),
+        /* base gradient */
+        linear-gradient(135deg, var(--grad-1) 0%, var(--grad-2) 50%, var(--grad-3) 100%) !important;
+    background-attachment: fixed !important;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif !important;
 }
 
-/* Titles and Headings */
-h1, h2, h3, .stSubheader {
-    color: var(--text) !important;
+/* ============================================================
+   TITLES & HEADINGS
+   ============================================================ */
+h1 {
+    font-family: 'Syne', sans-serif !important;
+    font-weight: 800 !important;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.5px !important;
 }
-
-/* SEARCH INPUT WRAPPER */
-div[data-baseweb="base-input"] {
-    background-color: var(--bg-dark) !important;
-    border-radius: 12px !important;
-    transition: none !important;
-}
-
-/* INPUT FIELD */
-.stTextInput input {
-    background-color: var(--bg-dark) !important;
-    color: var(--text-light) !important;
-    border: none !important;
-}
-
-/* REMOVE BLUE OUTLINE
-.stTextInput input:focus {
-    outline: none !important;
-    box-shadow: none !important;
-} */
-
-/* 1. NAME OF FACULTY (H4) */
-h4 {
-    color: var(--text) !important;
+h2, h3, .stSubheader {
+    font-family: 'Syne', sans-serif !important;
     font-weight: 700 !important;
-    margin-bottom: 0px !important;
+    color: var(--text-primary) !important;
+}
+h4 {
+    font-family: 'Syne', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    color: var(--text-primary) !important;
+    margin-bottom: 4px !important;
+}
+p, span, label, div {
+    color: var(--text-secondary);
 }
 
-/* 2. TYPE OF FACULTY */
-.faculty-type {
-    color: var(--text-muted) !important;
-    font-weight: 600;
-}
-
-/* 3. ADDRESS COLOUR */
-.address-text {
-    color: var(--text-light) !important;
-    font-style: italic;
-}
-
-/* 4. RELEVANT INTERESTS BOX (st.info) */
-div[data-testid="stNotification"] {
-    background-color: var(--bg-dark) !important;
-    color: var(--text-light) !important;
-    border: none !important;
-    border-radius: 10px !important;
-}
-
-/* THE FACULTY CARD WRAPPER */
-.faculty-card {
-    background-color: var(--bg-faculty);
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 6px 6px 0px var(--bg-dark);
-    margin-bottom: 30px;
-    border: none;
-}
-
-.faculty-card h4 { color: var(--text-muted) !important; }
-.faculty-card p, .faculty-card span { color: var(--text) !important; }
-
-
-/* Email Label Styling */
-.email-label {
-    font-size: 11px;
-    color: var(--text-muted);
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-}
-
-/* Institutional Link */
-.faculty-card a {
-    color: var(--bg-dark) !important;
-    text-decoration: underline;
-    font-weight: 600;
-}
-
-/* TARGET INNER INPUT CONTAINER (THIS CONTROLS BORDER) */
+/* ============================================================
+   SEARCH INPUT — frosted glass
+   ============================================================ */
+div[data-baseweb="base-input"],
 div[data-baseweb="input"] {
-    background-color: var(--bg-dark) !important;
-    border-radius: 12px !important;
-    border: 2px solid var(--bg-dark) !important;
-    box-shadow: none !important;
+    background: var(--input-bg) !important;
+    border: 1px solid var(--input-border) !important;
+    border-radius: 14px !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    box-shadow: 0 4px 20px hsla(230, 60%, 5%, 0.3) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 }
-
-/* REMOVE FOCUS RING */
 div[data-baseweb="input"]:focus-within {
-    border: 2px solid var(--bg-dark) !important;
-    box-shadow: none !important;
+    border: 1px solid var(--accent) !important;
+    box-shadow: 0 0 0 3px hsla(195, 90%, 65%, 0.15) !important;
 }
-
-/* Email Box */
-.email-box {
-    margin-bottom: 18px;   /* space after email */
+.stTextInput input {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 1rem !important;
+    border: none !important;
+    caret-color: var(--accent);
 }
-
-/* Specialization Box */
-.specialization-box {
-    margin-bottom: 18px;   /* space after specialization */
-}
-
-/* Score Text - make subtle */
-.score-text {
-    margin-top: 10px;
+.stTextInput input::placeholder {
     color: var(--text-muted) !important;
-    font-size: 13px;
-    opacity: 0.9;
+}
+/* Remove default Streamlit focus ring */
+div[data-baseweb="input"]:focus-within {
+    outline: none !important;
 }
 
+/* ============================================================
+   LABEL ABOVE SEARCH BOX
+   ============================================================ */
+.stTextInput label,
+.stTextInput label p {
+    color: var(--text-secondary) !important;
+    font-size: 0.9rem !important;
+}
+
+/* ============================================================
+   FACULTY CARD — glassmorphism panel
+   ============================================================ */
+.faculty-card {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 20px !important;
+    padding: 28px 30px !important;
+    margin-bottom: 20px !important;
+    box-shadow: var(--glass-shadow) !important;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* subtle top-edge highlight line */
+.faculty-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+}
+
+/* hover lift */
+.faculty-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px hsla(230, 60%, 5%, 0.6) !important;
+}
+
+/* ---- Card inner text ---- */
+.faculty-card h4 {
+    color: var(--text-primary) !important;
+    margin-bottom: 6px !important;
+}
+.faculty-card p,
+.faculty-card span {
+    color: var(--text-secondary) !important;
+}
+.faculty-type {
+    color: var(--accent-purple) !important;
+    font-weight: 600 !important;
+    font-size: 0.88rem !important;
+    letter-spacing: 0.3px;
+}
+.address-text {
+    color: var(--text-muted) !important;
+    font-style: italic;
+    font-size: 0.88rem;
+}
+
+/* ---- Link ---- */
+.faculty-card a {
+    color: var(--accent) !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: opacity 0.15s ease;
+}
+.faculty-card a:hover {
+    opacity: 0.75;
+    text-decoration: underline !important;
+}
+
+/* ---- Email section ---- */
+.email-label {
+    font-size: 10px !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+    color: var(--text-muted) !important;
+    font-weight: 700 !important;
+    margin-top: 14px !important;
+    margin-bottom: 3px !important;
+}
 .email-box {
-    margin-bottom: 18px;
-    font-weight: 400 !important;   /* remove bold */
-    font-family: inherit !important;  /* remove monospace feel */
-    color: var(--text) !important;
+    color: var(--text-primary) !important;
+    font-weight: 400 !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 0.92rem !important;
+    margin-bottom: 14px !important;
+}
+
+/* ---- Specialization ---- */
+.specialization-box {
+    background: hsla(195, 80%, 60%, 0.07);
+    border: 1px solid hsla(195, 80%, 60%, 0.15);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.88rem !important;
+    color: var(--text-secondary) !important;
+    margin-bottom: 4px !important;
+    line-height: 1.55;
+}
+.specialization-box strong {
+    color: var(--accent) !important;
+    font-weight: 600 !important;
+}
+
+/* ---- Score text ---- */
+.score-text {
+    color: var(--text-muted) !important;
+    font-size: 12px !important;
+    margin-top: 8px !important;
+}
+
+/* ============================================================
+   SPINNER & STATUS TEXT
+   ============================================================ */
+.stSpinner > div {
+    border-top-color: var(--accent) !important;
+}
+
+/* ============================================================
+   SCROLLBAR — subtle dark
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: hsla(255, 50%, 70%, 0.3);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: hsla(255, 50%, 70%, 0.5);
 }
