@@ -423,8 +423,6 @@ Dataset size: **111 faculty records**
 ## Interactive Research Portal
 The final stage is a custom-themed Streamlit portal that provides a user-friendly interface for semantic faculty discovery.
 
- - **Thematic Design**: Implements a "Scholarly Precision" theme using a **Sky Blue (#cadce6)** and **Deep Slate (#3c768c)** palette.
-
  - **Styling Architecture**: Visuals are controlled via an external `style.css` file to ensure a clean separation between application logic and design.
 
  - **Consolidated Faculty Cards**: To improve data density and readability, all 13 fields (including match confidence and research specialization) are displayed within a single, rounded-corner card.
