@@ -317,14 +317,17 @@ The table below defines the Faculty database schema and the transformation logic
   
 </details>
 
-## Data Storage Logic
+<details>
+<summary><b>Data Storage Logic</b></summary>
 
 The storage stage persists the cleaned faculty data into a relational SQLite database.
 
 - Validates cleaned JSON input.  
 - Initializes SQLite database and creates `Faculty` table if missing.  
 - Loads cleaned data using batch `INSERT OR IGNORE` for efficiency.  
-- Commits all inserts in a single transaction to ensure consistency.   
+- Commits all inserts in a single transaction to ensure consistency.
+  
+</details>
 
 ## Dataset Statistics & Auditing
 
