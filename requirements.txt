@@ -1,0 +1,10 @@
+# Web Framework & Theme
+streamlit>=1.25.0
+
+# Data processing & storage
+pandas>=2.0
+sqlalchemy>=2.0
+
+# Semantic search & ML
+sentence-transformers>=2.2
+torch>=2.0
