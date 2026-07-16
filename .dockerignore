@@ -16,4 +16,4 @@ logs/
 .idea/
 
 # Large model folder (Since we download it in the Dockerfile)
-local_model_folder/
+models/local_model_folder/

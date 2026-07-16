@@ -18,11 +18,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create directories for logs and models
-RUN mkdir -p logs local_model_folder
+RUN mkdir -p logs models/local_model_folder
 
-# Pre-download the SentenceTransformer model during build 
+# Pre-download the SentenceTransformer model during build
 # This ensures Render doesn't time out during the first request
-RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2', cache_folder='./local_model_folder')"
+RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2', cache_folder='./models/local_model_folder')"
 
 # Expose ports (FastAPI on 8000, Streamlit on 8501)
 EXPOSE 8000
@@ -30,4 +30,4 @@ EXPOSE 8501
 
 # The start command (we will override this in Render)
 
-CMD ["uvicorn", "api_server:app", "--host", "0.0.0.0", "--port", "10000"]
+CMD ["uvicorn", "src.faculty_finder.api_server:app", "--host", "0.0.0.0", "--port", "10000"]

@@ -59,8 +59,8 @@ def run_transformation(raw_file, clean_file):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", default="raw_data.json")
-    parser.add_argument("--output", default="cleaned_data.json")
+    parser.add_argument("--input", default="data/raw_data.json")
+    parser.add_argument("--output", default="data/cleaned_data.json")
     args = parser.parse_args()
     
     run_transformation(args.input, args.output)

@@ -7,8 +7,8 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=sqlite:///faculty_data.db
-    command: uvicorn api_server:app --host 0.0.0.0 --port 8000
+      - DATABASE_URL=sqlite:///data/faculty_data.db
+    command: uvicorn src.faculty_finder.api_server:app --host 0.0.0.0 --port 8000
 
   streamlit:
     build: .
@@ -19,4 +19,4 @@ services:
       - API_URL=http://api:8000
     depends_on:
       - api
-    command: streamlit run app.py --server.port 8501 --server.address 0.0.0.0
+    command: streamlit run src/faculty_finder/ui/app.py --server.port 8501 --server.address 0.0.0.0

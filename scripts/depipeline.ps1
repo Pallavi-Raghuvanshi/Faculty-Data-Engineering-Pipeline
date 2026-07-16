@@ -95,7 +95,7 @@ switch ($STAGE) {
         Write-Host "${YELLOW}____________________________________________________________________${NC}"
         Write-Host "${YELLOW}Stage 2: Transforming $RAW_FILE into $CLEAN_FILE...${NC}"
 
-        python transformation.py --input "$RAW_FILE" --output "$CLEAN_FILE"
+        python src/faculty_finder/transformation.py --input "$RAW_FILE" --output "$CLEAN_FILE"
 
         Write-Host "${YELLOW}____________________________________________________________________${NC}"
     }
@@ -114,7 +114,7 @@ switch ($STAGE) {
         Write-Host "${MAGENTA}____________________________________________________________________${NC}"
         Write-Host "${MAGENTA}Stage 3: Loading $CLEAN_FILE into the $DB_NAME database...${NC}"
 
-        python storage.py --input "$CLEAN_FILE" --database "$DB_NAME"
+        python src/faculty_finder/storage.py --input "$CLEAN_FILE" --database "$DB_NAME"
 
         Write-Host "${MAGENTA}____________________________________________________________________${NC}"
     }
@@ -132,7 +132,7 @@ switch ($STAGE) {
         Write-Host "${GREEN}DEPipeline Stage 4: The serving process is starting...${NC}"
         Write-Host "${GREEN}Database: $env:DATABASE_NAME | Export File: $env:EXPORT_JSON_PATH${NC}"
 
-        python -m uvicorn api_server:app --reload
+        python -m uvicorn src.faculty_finder.api_server:app --reload
 
         Write-Host "${GREEN}____________________________________________________________________${NC}"
     }
@@ -154,7 +154,7 @@ switch ($STAGE) {
         Write-Host "${BLUE}DEPipeline Stage 5: Launching Semantic Search Engine...${NC}"
         Write-Host "${BLUE}Using Dataset: $CLEAN_FILE${NC}"
 
-        python semantic_search.py
+        python src/faculty_finder/semantic_search.py
 
         Write-Host "${BLUE}____________________________________________________________________${NC}"
     }

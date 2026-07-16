@@ -17,9 +17,9 @@ logging.getLogger("sentence_transformers").setLevel(logging.ERROR)
 
 # Load the local model
 
-model = SentenceTransformer('./local_model_folder', local_files_only=True)
+model = SentenceTransformer('./models/local_model_folder', local_files_only=True)
 
-def get_embeddings(faculty_list, cache_file='embeddings.pt'):
+def get_embeddings(faculty_list, cache_file='models/embeddings.pt'):
     if os.path.exists(cache_file):
         return torch.load(cache_file)
     
@@ -30,7 +30,7 @@ def get_embeddings(faculty_list, cache_file='embeddings.pt'):
     torch.save(embeddings, cache_file)
     return embeddings
 
-def search(query_text, data_source='cleaned_data.json', top_k=5):
+def search(query_text, data_source='data/cleaned_data.json', top_k=5):
     start_time = time.time()
 
     with open(data_source, 'r') as f:

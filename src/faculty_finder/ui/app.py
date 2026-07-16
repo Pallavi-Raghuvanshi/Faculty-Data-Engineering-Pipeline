@@ -3,7 +3,8 @@ import sqlite3
 import os
 
 def local_css(file_name):
-    with open(file_name) as f:
+    css_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), file_name)
+    with open(css_path) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 local_css("style.css") # Load the theme file
@@ -21,8 +22,8 @@ def load_engine():
     from sentence_transformers import SentenceTransformer, util
     
     # Load model and pre-computed embeddings
-    model = SentenceTransformer('./local_model_folder')
-    embeddings = torch.load('embeddings.pt', weights_only=True)
+    model = SentenceTransformer('./models/local_model_folder')
+    embeddings = torch.load('models/embeddings.pt', weights_only=True)
     return model, embeddings, util
 
 with st.spinner("Loading Pre-trained Semantic Embeddings..."):
@@ -49,7 +50,7 @@ if query:
     st.subheader("Recommended Faculties:")
     
     # Fetch and display
-    conn = sqlite3.connect('faculty_data.db')
+    conn = sqlite3.connect('data/faculty_data.db')
     cursor = conn.cursor()
     
     for i in range(len(indices)):

@@ -106,7 +106,7 @@ case "$STAGE" in
         echo -e "${YELLOW}____________________________________________________________________${NC}"
         echo -e "${YELLOW}Stage 2: Transforming $RAW_FILE → $CLEAN_FILE${NC}"
 
-        python3 transformation.py --input "$RAW_FILE" --output "$CLEAN_FILE"
+        python3 src/faculty_finder/transformation.py --input "$RAW_FILE" --output "$CLEAN_FILE"
 
         echo -e "${YELLOW}____________________________________________________________________${NC}"
         ;;
@@ -125,7 +125,7 @@ case "$STAGE" in
         echo -e "${MAGENTA}____________________________________________________________________${NC}"
         echo -e "${MAGENTA}Stage 3: Loading data into $DB_NAME${NC}"
 
-        python3 storage.py --input "$CLEAN_FILE" --database "$DB_NAME"
+        python3 src/faculty_finder/storage.py --input "$CLEAN_FILE" --database "$DB_NAME"
 
         echo -e "${MAGENTA}____________________________________________________________________${NC}"
         ;;
@@ -143,7 +143,7 @@ case "$STAGE" in
         echo -e "${GREEN}DEPipeline Stage 4: Serving API${NC}"
         echo -e "${GREEN}Database: $DATABASE_NAME${NC}"
 
-        python3 -m uvicorn api_server:app --reload
+        python3 -m uvicorn src.faculty_finder.api_server:app --reload
 
         echo -e "${GREEN}____________________________________________________________________${NC}"
         ;;
@@ -163,7 +163,7 @@ case "$STAGE" in
         echo -e "${BLUE}DEPipeline Stage 5: Semantic Search Engine${NC}"
         echo -e "${BLUE}Using Dataset: $CLEAN_FILE${NC}"
 
-        python3 semantic_search.py
+        python3 src/faculty_finder/semantic_search.py
 
         echo -e "${BLUE}____________________________________________________________________${NC}"
         ;;

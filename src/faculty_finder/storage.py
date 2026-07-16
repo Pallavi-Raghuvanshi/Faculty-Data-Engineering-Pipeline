@@ -49,7 +49,7 @@ def run_storage(input_file, db_path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", default="cleaned_data.json")
-    parser.add_argument("--database", default="faculty_data.db")
+    parser.add_argument("--input", default="data/cleaned_data.json")
+    parser.add_argument("--database", default="data/faculty_data.db")
     args = parser.parse_args()
     run_storage(args.input, args.database)

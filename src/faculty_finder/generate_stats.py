@@ -74,6 +74,6 @@ def generate_db_stats(db_name):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python generate_stats.py faculty_data.db")
+        print("Usage: python src/faculty_finder/generate_stats.py data/faculty_data.db")
         sys.exit(1)
     generate_db_stats(sys.argv[1])

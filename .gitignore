@@ -19,9 +19,10 @@ ENV/
 # ===== AI & Local Model Cache =====
 # Exclude the large transformer model weights folder
 # Only ignore this if you are downloading the model during Docker build
-local_model_folder/
+models/local_model_folder/
 
 # ===== OS & Editors =====
 .DS_Store
 .vscode/
 .idea/
+.claude/

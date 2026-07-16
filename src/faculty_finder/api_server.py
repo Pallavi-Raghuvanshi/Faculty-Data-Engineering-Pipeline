@@ -3,7 +3,7 @@ import sqlite3
 import os
 from contextlib import asynccontextmanager
 
-DB_NAME = os.getenv("DATABASE_NAME", "faculty_data.db")
+DB_NAME = os.getenv("DATABASE_NAME", "data/faculty_data.db")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
