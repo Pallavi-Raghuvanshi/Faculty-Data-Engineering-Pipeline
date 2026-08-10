@@ -1,8 +1,5 @@
 # Faculty Data Engineering Pipeline
 
-## Author
-- Pallavi Raghuvanshi  
-
 An end-to-end data engineering pipeline that scrapes, cleans, and stores faculty data, exposing it via FastAPI. The system is fully cross-platform (Windows, Linux, macOS) and enables data-driven faculty discovery and academic research collaboration.
 
 ## Project Ecosystem (Live)
@@ -464,3 +461,7 @@ The project utilizes a dual-requirement structure to optimize for local developm
 - **Advanced Filtering & Sorting**: Integrate sidebar controls in the Streamlit UI to filter results by department, designation, or academic rank.
 - **Automated Pipeline Orchestration**: Implement GitHub Actions to schedule periodic crawls and automate the re-computation of semantic embeddings.
 - **Deployment & Hosting**: Transition from a local environment to a production-grade cloud deployment using Streamlit Community Cloud or Hugging Face Spaces.
+
+## Author
+
+Pallavi Raghuvanshi  
